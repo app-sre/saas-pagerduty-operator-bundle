@@ -5,7 +5,7 @@ metadata:
     categories: A list of comma separated categories that your operator falls under.
     certified: 'false'
     containerImage: quay.io/app-sre/pagerduty-operator:latest
-    createdAt: '2019-04-17T20:35:09Z'
+    createdAt: '2019-04-17T20:45:06Z'
     description: Pagerduty Operator.
     support: Wesley Hearn
   name: pagerduty-operator.v0.1.60-6eb33ed
