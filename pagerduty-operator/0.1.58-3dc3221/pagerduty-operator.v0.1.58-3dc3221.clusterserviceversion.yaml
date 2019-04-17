@@ -121,5 +121,5 @@ spec:
   maturity: alpha
   provider:
     name: Red Hat, Inc
-  replaces: pagerduty-operator.vv0.1.52-4d781f0
+  replaces: pagerduty-operator.v0.1.52-4d781f0
   version: 0.1.58-3dc3221
