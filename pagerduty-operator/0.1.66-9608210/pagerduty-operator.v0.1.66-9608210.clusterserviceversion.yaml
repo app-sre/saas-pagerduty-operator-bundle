@@ -1,0 +1,124 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: ClusterServiceVersion
+metadata:
+  annotations:
+    categories: A list of comma separated categories that your operator falls under.
+    certified: 'false'
+    containerImage: quay.io/app-sre/pagerduty-operator:latest
+    createdAt: '2019-04-18T18:15:14Z'
+    description: Pagerduty Operator.
+    support: Wesley Hearn
+  name: pagerduty-operator.v0.1.66-9608210
+  namespace: placeholder
+spec:
+  description: Pagerduty Operator.
+  displayName: pagerduty-operator
+  install:
+    spec:
+      clusterPermissions:
+      - rules:
+        - apiGroups:
+          - ''
+          resources:
+          - pods
+          - services
+          - endpoints
+          - persistentvolumeclaims
+          - events
+          - configmaps
+          - secrets
+          verbs:
+          - '*'
+        - apiGroups:
+          - ''
+          resources:
+          - namespaces
+          verbs:
+          - get
+        - apiGroups:
+          - apps
+          resources:
+          - deployments
+          - daemonsets
+          - replicasets
+          - statefulsets
+          verbs:
+          - '*'
+        - apiGroups:
+          - monitoring.coreos.com
+          resources:
+          - servicemonitors
+          verbs:
+          - get
+          - create
+        - apiGroups:
+          - hive.openshift.io
+          attributeRestrictions: null
+          resources:
+          - clusterdeployments
+          - clusterdeployments/finalizers
+          - clusterdeployments/status
+          - syncsets
+          verbs:
+          - get
+          - list
+          - watch
+          - update
+          - patch
+        - apiGroups:
+          - hive.openshift.io
+          resources:
+          - syncsets
+          verbs:
+          - create
+        serviceAccountName: pagerduty-operator
+      deployments:
+      - name: pagerduty-operator
+        spec:
+          replicas: 1
+          selector:
+            matchLabels:
+              name: pagerduty-operator
+          template:
+            metadata:
+              labels:
+                name: pagerduty-operator
+            spec:
+              containers:
+              - command:
+                - pagerduty-operator
+                env:
+                - name: WATCH_NAMESPACE
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: metadata.namespace
+                - name: POD_NAME
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: metadata.name
+                - name: OPERATOR_NAME
+                  value: pagerduty-operator
+                image: quay.io/app-sre/pagerduty-operator:9608210
+                imagePullPolicy: Always
+                name: pagerduty-operator
+              serviceAccountName: pagerduty-operator
+    strategy: deployment
+  installModes:
+  - supported: true
+    type: OwnNamespace
+  - supported: true
+    type: SingleNamespace
+  - supported: false
+    type: MultiNamespace
+  - supported: false
+    type: AllNamespaces
+  keywords:
+  - kubernetes
+  - openshift
+  - multi-cluster
+  - cluster
+  maturity: alpha
+  provider:
+    name: Red Hat, Inc
+  replaces: pagerduty-operator.v0.1.60-6eb33ed
+  version: 0.1.66-9608210
