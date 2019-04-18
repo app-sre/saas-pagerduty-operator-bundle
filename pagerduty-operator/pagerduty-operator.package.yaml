@@ -1,4 +1,4 @@
 packageName: pagerduty-operator
 channels:
 - name: production
-  currentCSV: pagerduty-operator.v0.1.60-6eb33ed
+  currentCSV: pagerduty-operator.v0.1.62-de28886
