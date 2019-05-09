@@ -1,4 +1,4 @@
 packageName: pagerduty-operator
 channels:
 - name: staging
-  currentCSV: pagerduty-operator.v0.1.76-2ca6a41
+  currentCSV: pagerduty-operator.v0.1.78-11b58b0
